@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: viome-wikipedia-service
+# embedded web server settings
+# some of these are specific to tomcat      
+server:
+  port: 9020
+  # the context path is the part after http:/localhost:8080
+  tomcat:
+    basedir: target/tomcat
+    uri-encoding: UTF-8  
