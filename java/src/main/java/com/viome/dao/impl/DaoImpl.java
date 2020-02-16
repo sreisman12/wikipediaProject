@@ -56,6 +56,7 @@ public class DaoImpl implements IWikiDAO {
         query.append(";");
         List<WikiPage> searchResults = jdbcTemplate.query(query.toString(), new WikiPageRowMapper());
         if(shouldReverse){
+            System.out.println("shouldReverse was true!");
             searchResults.forEach(wikiPage -> {
                 wikiPage.setContent(reverse(wikiPage.getContent()));
             });
