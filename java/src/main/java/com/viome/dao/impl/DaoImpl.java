@@ -33,8 +33,16 @@ public class DaoImpl implements IWikiDAO<Resource> {
         System.out.println("Sending query: " + query);
         Statement statement = conn.createStatement();
         ResultSet results = statement.executeQuery(query);
-        System.out.println("Retrieved results: " + results);
-        System.out.println(results.toString());
+
+        String title ="";
+        int pageId = 1;
+
+        while(results.next()){
+            title  = results.getString("title");
+            pageId = results.getInt("id");
+        }
+        System.out.println("Retrieved title: " + title);
+        System.out.println("Retrieved id: " + pageId);
         return null;
     }
 }
