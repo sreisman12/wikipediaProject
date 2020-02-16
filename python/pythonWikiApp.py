@@ -23,12 +23,21 @@ def fetchPagesByParams():
 	searchKeys = request.args.keys()
 	query = "SELECT * FROM page WHERE "
 	
-	tempParams = []
+	paramsList = []
 	for key in searchKeys:
 		if(key is not "reverse"):
-			tempParams.append(query + key + "  LIKE '%" + str(searchKeys[key] + "%'")
-	
-	return str(request.args.keys())
+			paramsList.append(query + key + "  LIKE '%" + str(searchKeys[key] + "%'")
+
+	for i, param in paramsList:
+	    if i != len(paramsList) - 1:
+	        query = query + param + " AND "
+	    else:
+	        query = query + param
+	query = query + ";"
+
+	dbCursor.execute(query)
+	wikiPages = dbCursor.fetchall()
+	return jsonify(wikiPages)
 
 if __name__=="__main__":
 	app.run(debug=True)
