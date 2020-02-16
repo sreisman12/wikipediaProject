@@ -48,4 +48,4 @@ for counter in range(1, 1000):
 
 
     wikiCollection.insert(wikiPageForMongo)
-    print("Inserted " + wikiPageForMongo['title']
+    print("Inserted " + wikiPageForMongo['title'])
