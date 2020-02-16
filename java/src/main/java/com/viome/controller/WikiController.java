@@ -27,6 +27,9 @@ public class WikiController {
     @RequestMapping(value = "/wikiPage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WikiPage>> getResources(@RequestParam Map<String, String> searchParams) throws SQLException {
         List<WikiPage> wikiPages = wikiDao.getResources(searchParams);
+        wikiPages.forEach(page->{
+            System.out.println(page.getTitle());
+        });
         return new ResponseEntity<>(wikiPages,  HttpStatus.ACCEPTED);
     }
 
