@@ -74,6 +74,9 @@ public class DaoImpl implements IWikiDAO {
 
     private String reverse(String content){
         StringBuilder builder = new StringBuilder(content);
-        return builder.reverse().toString();
+        System.out.println("Reversing string: " + content);
+        String reversed = builder.reverse().toString();
+        System.out.println("Reversed stiring: " + reversed);
+        return reversed;
     }
 }
