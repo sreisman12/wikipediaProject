@@ -29,8 +29,22 @@ mysqlCursor = mysqlConnection.cursor()
 
 #choose random record from between the 10000 stored wikipages
 randomPageId = random.randint(1,10000)
-sql = "SELECT title, body, url FROM page WHERE id =" + str(randomPageId)
-wikiPage = mysqlCursor.execute(sql)
+sql = "SELECT title, body, url FROM page WHERE id =" + str(randomPageId) + ";"
+mysqlCursor.execute(sql)
+wikiPage = mysqlCursor.fetchone()
+
+wikiPageForMongo = {'title': wikiPage[0], 'content': wikiPage[1], 'url': wikiPage[2], 'references':[]}
+
+referenceQuerySql = "SELECT uri FROM reference WHERE page_id =" + str(randomPageId) + ";"
+mysqlCursor.execute(referenceQuerySql)
+references = mysqlCursor.fetchall()
+
+
+
+for ref in references:
+	wikiPageForMongo['references'].append(ref)
+
+
 pdb.set_trace()
 
 
