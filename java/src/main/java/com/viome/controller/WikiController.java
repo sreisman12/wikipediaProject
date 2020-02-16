@@ -19,15 +19,15 @@ public class WikiController {
     IWikiDAO wikiDao;
 
     @RequestMapping(value = "/wikiPage/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getWikiPageById(@PathVariable String id) throws SQLException {
-        WikiPage resourceItem = wikiDao.getResourceById(id);
-        return new ResponseEntity<>("Fetching wiki page with id: " + id, HttpStatus.ACCEPTED);
+    public ResponseEntity<WikiPage> getWikiPageById(@PathVariable String id) throws SQLException {
+        WikiPage wikiPage = wikiDao.getResourceById(id);
+        return new ResponseEntity<>(wikiPage, HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(value = "/wikiPage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getResources(@RequestParam Map<String, String> searchParams) throws SQLException {
+    public ResponseEntity<List<WikiPage>> getResources(@RequestParam Map<String, String> searchParams) throws SQLException {
         List<WikiPage> wikiPages = wikiDao.getResources(searchParams);
-        return new ResponseEntity<>("Fetching wiki page with id: ",  HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(wikiPages,  HttpStatus.ACCEPTED);
     }
 
 
