@@ -2,10 +2,10 @@ package com.viome.dao.impl;
 
 import com.viome.dao.IWikiDAO;
 import com.viome.model.Resource;
-import org.omg.CORBA.NameValuePair;
 
 import java.sql.*;
 import java.util.List;
+import java.util.Map;
 
 public class DaoImpl implements IWikiDAO<Resource> {
 
@@ -22,7 +22,7 @@ public class DaoImpl implements IWikiDAO<Resource> {
     }
 
     @Override
-    public List<Resource> getResources(List<NameValuePair> searchParams) {
+    public List<Resource> getResources(Map<String,String> searchParams) {
         return null;
     }
 
