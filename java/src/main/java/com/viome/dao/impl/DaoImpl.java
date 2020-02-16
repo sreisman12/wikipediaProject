@@ -17,10 +17,8 @@ public class DaoImpl implements IWikiDAO<Resource> {
     Connection conn = null;
 
 
-
-
     public DaoImpl() throws SQLException {
-       //conn = DriverManager.getConnection(url, user, password);
+       conn = DriverManager.getConnection(url, user, password);
     }
 
     @Override
