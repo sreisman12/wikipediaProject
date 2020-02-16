@@ -45,6 +45,7 @@ for ref in references:
 	wikiPageForMongo['references'].append(ref)
 
 
+wikiCollection.insert(wikiPageForMongo)
 pdb.set_trace()
 
 

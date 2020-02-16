@@ -64,7 +64,7 @@ public class DaoImpl implements IWikiDAO {
     }
 
     @Override
-    public WikiPage getResourceById(String id) throws SQLException {
+    public WikiPage getResourceById(String id) {
         String query = "SELECT * FROM page WHERE ID = ?";
         WikiPage wikiPage = jdbcTemplate.queryForObject(query, new Object[] {id}, new WikiPageRowMapper());
 
