@@ -46,7 +46,5 @@ for ref in references:
 
 
 wikiCollection.insert(wikiPageForMongo)
-pdb.set_trace()
-
-
+print("Inserted " + wikiPageForMongo['title']
 
