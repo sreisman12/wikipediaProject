@@ -32,6 +32,7 @@ public class DaoImpl implements IWikiDAO<Resource> {
     public Resource getResourceById(String id) throws SQLException {
 
         String query = "SELECT id, title FROM page WHERE id=" + id;
+        System.out.println("Sending query: " + query);
         Statement statement = conn.createStatement();
         ResultSet results = statement.executeQuery(query);
         System.out.println("Retrieved results: " + results);
