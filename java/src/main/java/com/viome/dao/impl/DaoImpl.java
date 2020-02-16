@@ -2,11 +2,13 @@ package com.viome.dao.impl;
 
 import com.viome.dao.IWikiDAO;
 import com.viome.model.Resource;
+import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class DaoImpl implements IWikiDAO<Resource> {
 
     String url = "jdbc:mysql://localhost:3306/wiki?useSSL=false";
