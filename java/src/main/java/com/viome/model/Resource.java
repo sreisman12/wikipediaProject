@@ -1,13 +1,8 @@
 package com.viome.model;
 
-public class Resource<T> {
+public class Resource {
     protected int id;
-    protected T content;
-
-    public Resource(int id, T content) {
-        this.id = id;
-        this.content = content;
-    }
+    protected String content;
 
     public Resource() {}
 
@@ -19,11 +14,11 @@ public class Resource<T> {
         this.id = id;
     }
 
-    public T getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(T content) {
+    public void setContent(String content) {
         this.content = content;
     }
 }

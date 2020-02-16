@@ -1,8 +1,17 @@
 package com.viome.model;
 
-public class WikiPage extends Resource<String> {
+public class WikiPage extends Resource {
 
     private String title;
+    private String language;
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
     public String getTitle() {
         return title;
@@ -16,6 +25,7 @@ public class WikiPage extends Resource<String> {
     public String toString() {
         return "WikiPage{" +
                 "title='" + title + '\'' +
+                ", language='" + language + '\'' +
                 ", id=" + id +
                 ", content=" + content +
                 '}';
