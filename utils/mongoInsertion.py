@@ -28,7 +28,7 @@ mysqlConnection = mysql.connector.connect(
 mysqlCursor = mysqlConnection.cursor()
 
 # Inserting 1000 random records from MySQL DB to MongoDB
-for (counter in range(1, 1000):
+for counter in range(1, 1000):
     #choose random record from between the 10000 stored wikipages
     randomPageId = random.randint(1,10000)
     sql = "SELECT title, body, url FROM page WHERE id =" + str(randomPageId) + ";"
