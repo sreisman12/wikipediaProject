@@ -35,9 +35,7 @@ public class DaoImpl implements IWikiDAO {
          * By default this function will return all matching resources
          */
         List<String> params = new ArrayList<>();
-        System.out.println("searchParams contains key reverse: " + searchParams.containsKey("reverse"));
         if(searchParams.containsKey("reverse")){
-            System.out.println(Boolean.parseBoolean(searchParams.get("reverse")));
             shouldReverse = Boolean.parseBoolean(searchParams.get("reverse"));
         }
 
@@ -57,7 +55,6 @@ public class DaoImpl implements IWikiDAO {
         query.append(";");
         List<WikiPage> searchResults = jdbcTemplate.query(query.toString(), new WikiPageRowMapper());
         if(shouldReverse){
-            System.out.println("shouldReverse was true!");
             searchResults.forEach(wikiPage -> {
                 wikiPage.setContent(reverse(wikiPage.getContent()));
             });
@@ -77,9 +74,7 @@ public class DaoImpl implements IWikiDAO {
 
     private String reverse(String content){
         StringBuilder builder = new StringBuilder(content);
-        System.out.println("Reversing string: " + content);
         String reversed = builder.reverse().toString();
-        System.out.println("Reversed stiring: " + reversed);
         return reversed;
     }
 }
