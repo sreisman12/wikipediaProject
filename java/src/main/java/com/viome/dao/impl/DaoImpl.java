@@ -22,7 +22,20 @@ public class DaoImpl implements IWikiDAO<Resource> {
     }
 
     @Override
-    public List<Resource> getResources(Map<String,String> searchParams) {
+    public List<Resource> getResources(Map<String,String> searchParams) throws SQLException {
+        StringBuilder query = new StringBuilder();
+        query.append("SELECT * FROM page WHERE ");
+        searchParams.keySet().forEach(key -> {
+            query.append(key.toString() + " = " + searchParams.get(key));
+        });
+        query.append(";");
+        System.out.println("Sending query: " + query);
+        Statement statement = conn.createStatement();
+        ResultSet results = statement.executeQuery(query.toString());
+
+        while(results.next()){
+            System.out.println("title = " + results.getString("title"));
+        }
         return null;
     }
 
