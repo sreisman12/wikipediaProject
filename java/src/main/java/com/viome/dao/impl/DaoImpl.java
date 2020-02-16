@@ -2,6 +2,7 @@ package com.viome.dao.impl;
 
 import com.viome.dao.IWikiDAO;
 import com.viome.model.Resource;
+import com.viome.model.WikiPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -71,9 +72,10 @@ public class DaoImpl implements IWikiDAO<Resource> {
 //        System.out.println("Retrieved title: " + title);
 //        System.out.println("Retrieved id: " + pageId);
         SqlParameterSource params = new MapSqlParameterSource().addValue("id", id);
-        String title = namedParameterJdbcTemplate.queryForObject("SELECT title FROM page WHERE id = :id", params, String.class);
+        WikiPage wikiPage = namedParameterJdbcTemplate.queryForObject("SELECT id, title, body FROM page WHERE id = :id", params, WikiPage.class);
 
-        System.out.println("Got title: " + title);
-        return new Resource<>(Integer.parseInt(id), title);
+        System.out.println("Got title: " + wikiPage.getTitle());
+        System.out.println("Content is: " + wikiPage.getContent());
+        return wikiPage;
     }
 }
