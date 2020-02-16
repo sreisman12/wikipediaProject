@@ -1,9 +1,21 @@
 package com.viome.model;
 
-public class WikiPage extends Resource {
+public class WikiPage {
 
     private String title;
     private String language;
+    private String id;
+    private String content;
+
+    public WikiPage(String title, String language, String id, String content) {
+        this.title = title;
+        this.language = language;
+        this.id = id;
+        this.content = content;
+    }
+
+    public WikiPage() {
+    }
 
     public String getLanguage() {
         return language;

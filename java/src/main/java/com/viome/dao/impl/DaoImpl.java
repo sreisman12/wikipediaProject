@@ -2,7 +2,6 @@ package com.viome.dao.impl;
 
 import com.viome.dao.IWikiDAO;
 import com.viome.dao.WikiPageRowMapper;
-import com.viome.model.Resource;
 import com.viome.model.WikiPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class DaoImpl implements IWikiDAO<Resource> {
+public class DaoImpl implements IWikiDAO {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -25,7 +24,7 @@ public class DaoImpl implements IWikiDAO<Resource> {
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Override
-    public List<Resource> getResources(Map<String,String> searchParams) throws SQLException {
+    public List<WikiPage> getResources(Map<String,String> searchParams) throws SQLException {
 
         StringBuilder query = new StringBuilder();
         query.append("SELECT * FROM page WHERE ");
@@ -46,16 +45,16 @@ public class DaoImpl implements IWikiDAO<Resource> {
 
         query.append(";");
 
-        List<Resource> searchResults = jdbcTemplate.query(query.toString(), new WikiPageRowMapper());
 
-        System.out.println("Retrieved: " + searchResults);
+        List<WikiPage> searchResults = jdbcTemplate.query(query.toString(), new WikiPageRowMapper());
+
         return searchResults;
     }
 
     @Override
-    public Resource getResourceById(String id) throws SQLException {
+    public WikiPage getResourceById(String id) throws SQLException {
         String query = "SELECT * FROM page WHERE ID = ?";
-        Resource wikiPage = jdbcTemplate.queryForObject(query, new Object[] {id}, new WikiPageRowMapper());
+        WikiPage wikiPage = jdbcTemplate.queryForObject(query, new Object[] {id}, new WikiPageRowMapper());
 
         System.out.println("Retrieved wikiPage: " + wikiPage.toString());
         return wikiPage;

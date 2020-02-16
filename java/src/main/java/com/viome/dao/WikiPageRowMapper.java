@@ -1,13 +1,12 @@
 package com.viome.dao;
 
-import com.viome.model.Resource;
 import com.viome.model.WikiPage;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class WikiPageRowMapper implements RowMapper<Resource> {
+public class WikiPageRowMapper implements RowMapper<WikiPage> {
     @Override
     public WikiPage mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         WikiPage wikiPage = new WikiPage();
