@@ -28,11 +28,21 @@ public class DaoImpl implements IWikiDAO {
 
         StringBuilder query = new StringBuilder();
         query.append("SELECT * FROM page WHERE ");
+        boolean shouldReverse = false;
 
+        /**
+         * Constructing 'LIKE' search based on parameters passed in request
+         * By default this function will return all matching resources
+         */
         List<String> params = new ArrayList<>();
+        if(searchParams.containsKey("reverse")){
+            shouldReverse = Boolean.getBoolean(searchParams.get("reverse"));
+        }
 
         searchParams.keySet().forEach(key -> {
-            params.add(key + " LIKE '%" + searchParams.get(key) + "%'");
+            if(!key.equalsIgnoreCase("reverse")){
+                params.add(key + " LIKE '%" + searchParams.get(key) + "%'");
+            }
         });
 
         Iterator<String> iter = params.iterator();
@@ -42,11 +52,13 @@ public class DaoImpl implements IWikiDAO {
                 query.append(" AND ");
             }
         }
-
         query.append(";");
-
-
         List<WikiPage> searchResults = jdbcTemplate.query(query.toString(), new WikiPageRowMapper());
+        if(shouldReverse){
+            searchResults.forEach(wikiPage -> {
+                wikiPage.setContent(reverse(wikiPage.getContent()));
+            });
+        }
 
         return searchResults;
     }
@@ -58,5 +70,10 @@ public class DaoImpl implements IWikiDAO {
 
         System.out.println("Retrieved wikiPage: " + wikiPage.toString());
         return wikiPage;
+    }
+
+    private String reverse(String content){
+        StringBuilder builder = new StringBuilder(content);
+        return builder.reverse().toString();
     }
 }

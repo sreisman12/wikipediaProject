@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface IWikiDAO {
-    public List<WikiPage> getResources(Map<String,String> searchParams) throws SQLException;
-    public WikiPage getResourceById(String id) throws SQLException;
+    List<WikiPage> getResources(Map<String, String> searchParams) throws SQLException;
+    WikiPage getResourceById(String id) throws SQLException;
 
 }
