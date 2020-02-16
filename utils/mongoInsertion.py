@@ -27,24 +27,26 @@ mysqlConnection = mysql.connector.connect(
 
 mysqlCursor = mysqlConnection.cursor()
 
-#choose random record from between the 10000 stored wikipages
-randomPageId = random.randint(1,10000)
-sql = "SELECT title, body, url FROM page WHERE id =" + str(randomPageId) + ";"
-mysqlCursor.execute(sql)
-wikiPage = mysqlCursor.fetchone()
+# Inserting 1000 random records from MySQL DB to MongoDB
+for (counter in range(1, 1000):
+    #choose random record from between the 10000 stored wikipages
+    randomPageId = random.randint(1,10000)
+    sql = "SELECT title, body, url FROM page WHERE id =" + str(randomPageId) + ";"
+    mysqlCursor.execute(sql)
+    wikiPage = mysqlCursor.fetchone()
 
-wikiPageForMongo = {'title': wikiPage[0], 'content': wikiPage[1], 'url': wikiPage[2], 'references':[]}
+    wikiPageForMongo = {'title': wikiPage[0], 'content': wikiPage[1], 'url': wikiPage[2], 'references':[]}
 
-referenceQuerySql = "SELECT uri FROM reference WHERE page_id =" + str(randomPageId) + ";"
-mysqlCursor.execute(referenceQuerySql)
-references = mysqlCursor.fetchall()
-
-
-
-for ref in references:
-	wikiPageForMongo['references'].append(ref)
+    referenceQuerySql = "SELECT uri FROM reference WHERE page_id =" + str(randomPageId) + ";"
+    mysqlCursor.execute(referenceQuerySql)
+    references = mysqlCursor.fetchall()
 
 
-wikiCollection.insert(wikiPageForMongo)
-print("Inserted " + wikiPageForMongo['title']
+
+    for ref in references:
+        wikiPageForMongo['references'].append(ref)
+
+
+    wikiCollection.insert(wikiPageForMongo)
+    print("Inserted " + wikiPageForMongo['title']
 
