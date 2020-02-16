@@ -37,8 +37,8 @@ public class DaoImpl implements IWikiDAO {
         List<String> params = new ArrayList<>();
         System.out.println("searchParams contains key reverse: " + searchParams.containsKey("reverse"));
         if(searchParams.containsKey("reverse")){
-            System.out.println(Boolean.getBoolean(searchParams.get("reverse")));
-            shouldReverse = Boolean.getBoolean(searchParams.get("reverse"));
+            System.out.println(Boolean.parseBoolean(searchParams.get("reverse")));
+            shouldReverse = Boolean.parseBoolean(searchParams.get("reverse"));
         }
 
         searchParams.keySet().forEach(key -> {
