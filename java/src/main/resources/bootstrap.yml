@@ -9,3 +9,6 @@ server:
   tomcat:
     basedir: target/tomcat
     uri-encoding: UTF-8  
+eureka:
+  client:
+    register-with-eureka: false
