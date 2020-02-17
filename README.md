@@ -32,7 +32,7 @@ This endpoint will return a JSON resource representing the Wikipedia page, inclu
 
 This endpoint will return a list of Wikipedia page resources as JSON which match the provided query.  **Note** by default the query performs a LIKE search and will return any results which contain the values provided.  As an example the following query can be performed
 
-	GET http://localhost:9020/wikiPage?title=japan
+	GET http://localhost:9020/wikiPage?title=bio
 
 Which will return all pages which contain the text 'japan' within their titles
 
