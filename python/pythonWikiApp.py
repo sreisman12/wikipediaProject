@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import mysql.connector
+import pdb
 
 mysqlDb = mysql.connector.connect(
     host="localhost",
@@ -22,28 +23,42 @@ def fetchPageById(id):
 
 @app.route("/wikiPage")
 def fetchPagesByParams():
+    reverse = False
     searchKeys = request.args.keys()
     query = "SELECT * FROM page WHERE "
 
     paramsList = []
     for key in searchKeys:
-        if key is not "reverse":
+        if key != "reverse":
 	    print ("key " + key)
-            paramsList.append(query + key + "  LIKE \'%" + request.args[key] + "%\'")
+            paramsList.append( key + "  LIKE \'%" + request.args[key] + "%\'")
+	else:
+	   reverse = request.args[key] == 'true'
+    i = 0
 
-	i = 0
-        for param in paramsList:
-            if i != len(paramsList) - 1:
-                query = query + param + " AND "
-            else:
-                query = query + param
+    for param in paramsList:
+        if i != len(paramsList) - 1:
+	    print("ABOUT TO APPEND param: " + param)
+            query = query + param + " AND "
+        else:
+            query = query + param
 	i+=1
 
     query = query + ";"
 
+    print(query)
     dbCursor.execute(query)
     wikiPages = dbCursor.fetchall()
-    return jsonify(wikiPages)
+    pagesToReturn = []
+    for page in wikiPages:
+	if reverse:
+		textToReverse = page[3]
+		splitText = textToReverse.split(" ")
+		textReversed = [word[::-1] for word in splitText]
+		pagesToReturn.append((page[0], page[1], page[2], " ".join(textReversed)))
+	else:
+		pagesToReturn.append(page)
+    return jsonify(pagesToReturn)
 
 
 if __name__ == "__main__":
