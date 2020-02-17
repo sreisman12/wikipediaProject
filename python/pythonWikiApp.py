@@ -41,8 +41,8 @@ def fetchPagesByParams():
 
     query = query + ";"
 
-            dbCursor.execute(query)
-            wikiPages = dbCursor.fetchall()
+    dbCursor.execute(query)
+    wikiPages = dbCursor.fetchall()
     return jsonify(wikiPages)
 
 
