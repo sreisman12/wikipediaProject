@@ -8,9 +8,15 @@
 
 - Access to the articles is exposed in the form of a RESTful API built using the Java Spring Boot Framework
 
-##Running the service
-- The service is packaged with Maven and can be started by running 
+##Running the Java service
+- The service is packaged with Maven and can be started on port 9020 by running 
 `$ java -jar /prod/software/wikiProject/java/target/wikiProject-0.0.1-SNAPSHOT.jar`
+
+##Running the Python Flask service
+- Additionally there is a python service which mimics the same API functionality of the Java service which can be started by default on port 5000 with the command
+`$python /prod/software/wikiProject/python/pythonWikiApp.py`
+**In order to access this service, simply start it, and replace the port numbers in the example below with 5000**
+
 
 
 ##API
