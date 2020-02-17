@@ -28,14 +28,18 @@ def fetchPagesByParams():
     paramsList = []
     for key in searchKeys:
         if key is not "reverse":
-            paramsList.append(query + key + "  LIKE '%" + str(searchKeys[key] + "%'"))
+	    print ("key " + key)
+            paramsList.append(query + key + "  LIKE \'%" + request.args[key] + "%\'")
 
-        for i, param in paramsList:
+	i = 0
+        for param in paramsList:
             if i != len(paramsList) - 1:
                 query = query + param + " AND "
             else:
                 query = query + param
-            query = query + ";"
+	i+=1
+
+    query = query + ";"
 
             dbCursor.execute(query)
             wikiPages = dbCursor.fetchall()
