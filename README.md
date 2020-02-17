@@ -34,7 +34,7 @@ This endpoint will return a list of Wikipedia page resources as JSON which match
 
 	GET http://localhost:9020/wikiPage?title=bio
 
-Which will return all pages which contain the text 'japan' within their titles
+Which will return all pages which contain the text 'bio' within their titles
 
 ###Reversing text
 >There is an optional query param which can be passed called **reverse**.  If the param is passed with a value of true, all text within the content of matching articles will be returned in reverse String order.  
