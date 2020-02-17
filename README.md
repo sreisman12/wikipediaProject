@@ -4,6 +4,8 @@
 
 - All articles are stored in a MySQL database where there are roughly 5000 articles in English and 5000 articles in Japanese
 
+`DB Schema` <https://app.sqldbm.com/MySQL/Edit/p98517/>
+
 - In order to support easily importing the articles, the open source python wikipedia project was used `Link` <https://pypi.org/project/wikipedia/>
 
 - Access to the articles is exposed in the form of a RESTful API built using the Java Spring Boot Framework
