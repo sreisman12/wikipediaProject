@@ -43,7 +43,7 @@ Any of these endpoints can be queried from within the console using **wget** or 
 
 ##Scripts and MongoDB
 
-Two python scripts have been used for this project, both of which are in the directory  `/prod/softwared/wikiProject/utils`
+Two python scripts have been used for this project, both of which are in the directory  `/prod/software/wikiProject/utils`
 
 1. `mongoInsertion.py`
 	This script was used to randomly collect 1000 of the 10,000 articles within the MySQL database and store them within the local mongo database instance.  The 1000 articles are stored in the db called **content** and in the **collection** pages
